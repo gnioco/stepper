@@ -35,8 +35,8 @@ def main():
     
     # Microstep Resolution MS1-MS3 -> GPIO Pin , can be set to (-1,-1,-1) to turn off 
     GPIO_pins = (14, 15, 18)  
-    direction= 20       # Direction -> GPIO Pin
-    step = 21      # Step -> GPIO Pin
+    direction= 22       # Direction -> GPIO Pin
+    step = 23      # Step -> GPIO Pin
     
     # Declare an named instance of class pass GPIO-PINs
     # (self, direction_pin, step_pin, mode_pins , motor_type):
