@@ -25,6 +25,8 @@ import sys
 import time
 import RPi.GPIO as GPIO
 
+from gpiozero import OutputDevice
+
 # ==================== CLASS SECTION ===============================
 
 class StopMotorInterrupt(Exception):
@@ -271,9 +273,16 @@ class A4988Nema(object):
         """
         self.stop_motor = False
         # setup GPIO
-        GPIO.setup(self.direction_pin, GPIO.OUT)
-        GPIO.setup(self.step_pin, GPIO.OUT)
+        # GPIO.setup(self.direction_pin, GPIO.OUT)
+        self.direction_pin  = OutputDevice(self.direction_pin)
+        #GPIO.setup(self.step_pin, GPIO.OUT)
+        self.step_pin  = OutputDevice(self.step_pin)
         GPIO.output(self.direction_pin, clockwise)
+        if clockwise:
+            self.direction_pin.off()
+        else:
+            self.direction_pin.on()
+
         if self.mode_pins != False:
             GPIO.setup(self.mode_pins, GPIO.OUT)
 
